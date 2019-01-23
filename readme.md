@@ -18,3 +18,21 @@ model设计
 选中apps,移动到apps下时候，去掉search xx的选项
 并在settings，下添加sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
 这样命令行运行不会报错，部署的时候
+##### xadmin
+下载 xadmin 2,0   pip install 解压
+##### 模板文件
+setting-template-file-code  
+```
+#coding:utf-8
+__author__='puxiaoshuai'
+__date__='$DATE $TIME'
+
+```
+新建adminx.py
+一些条件
+```
+list_display=['code','email','send_type','send_time']
+    search_fields=['code','email','send_type']
+    list_filter=['code','email','send_type','send_time']
+```
+
