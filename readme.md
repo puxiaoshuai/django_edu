@@ -8,7 +8,13 @@ blank 是针对表单的，如果 blank=True，表示你的表单填写该字段
 ```
 ##### 避免循环引用
 分层设计
-![image.png](https://upload-images.jianshu.io/upload_images/4908477-b1fb780f8a2bcc7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/4908477-b1fb780f8a2bcc7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
 
 model设计
-![image.png](https://upload-images.jianshu.io/upload_images/4908477-05cfeeabd121631b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](https://upload-images.jianshu.io/upload_images/4908477-05cfeeabd121631b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
+![image.png](https://upload-images.jianshu.io/upload_images/4908477-615e2876300659dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
+![image.png](https://upload-images.jianshu.io/upload_images/4908477-cb14ea14d217807e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
+##### 添加 apps，
+选中apps,移动到apps下时候，去掉search xx的选项
+并在settings，下添加sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
+这样命令行运行不会报错，部署的时候
