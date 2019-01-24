@@ -35,4 +35,34 @@ list_display=['code','email','send_type','send_time']
     search_fields=['code','email','send_type']
     list_filter=['code','email','send_type','send_time']
 ```
-
+##### admin全局配置
+#####登录注册
+path('', TemplateView.as_view(template_name='index.html'),name='index'),
+基于函数
+直接加载html文件,无逻辑交互
+跳转方式：/login/   或者 {% url 'xx'%}
+验证 authenticate
+登录  使用login (request,user)
+#### 自定义auth方法
+在setting中设置 
+AUTHENTICATION_BACKENDS= ('users.views.CustomBackend',)
+值为 apps中定义的CustomBackend()
+```
+from django.contrib.auth.backends import ModelBackend
+class CustomBackend(ModelBackend):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        try:
+            user = UserProfile.objects.get(Q(username=username) | Q(email=username))
+            if user.check_password(password):
+                return user
+        except:
+            return None
+```
+基于类视图的登陆,
+继承 from django.views.generic.base import  View，
+重写 get ,post方式
+#####验证码  django-simple-captcha
+##### 自带加密
+make_password  auth 下
+#####邮箱激活
+生成验证码，
