@@ -65,4 +65,8 @@ class CustomBackend(ModelBackend):
 ##### 自带加密
 make_password  auth 下
 #####邮箱激活
-生成验证码，
+通过邮箱，密码进行保存，但是没有激活， 并且，验证码类，随机生成code,关联了这个邮箱
+发送cod出去，用户点击连接，访问url,根据这个code,去查找关联的邮箱，这个邮箱在查找到user,并设置激活。
+##### 找回密码
+
+
