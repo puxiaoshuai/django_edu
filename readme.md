@@ -68,5 +68,28 @@ make_password  auth 下
 通过邮箱，密码进行保存，但是没有激活， 并且，验证码类，随机生成code,关联了这个邮箱
 发送cod出去，用户点击连接，访问url,根据这个code,去查找关联的邮箱，这个邮箱在查找到user,并设置激活。
 ##### 找回密码
+在 找回密码界面，验证码发送到填写的邮箱，邮箱中设置连接地址，点击链接地址，验证code 通过，并查询此邮箱，
+验证通过，跳转到填写新密码的界面，并把email隐藏设置，根据这个隐藏的邮箱查询用户，并修改密码
+##### media设置
+第一步
+settings.py 设置
+ ```angular2html
+MEDIA_URL='/media/' #读取
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')#存放
+```
+第二步：
+options添加   'django.template.context_processors.media'
+第三步：
+url.py中添加
+```angular2html
+from django.conf import settings
+from django.conf.urls.static import static
+urlpatterns=[xx
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+第四bu使用
+{{MEDIA_URL}}{{xxx}}
+
+
 
 

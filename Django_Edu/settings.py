@@ -72,6 +72,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
+
+
             ],
         },
     },
@@ -131,6 +134,10 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+MEDIA_URL='/media/' #读取
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')#存放
+
+
 #发送邮件
 EMAIL_HOST='smtp.qq.com'  #smtp
 EMAIL_PORT=25
