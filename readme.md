@@ -89,6 +89,23 @@ urlpatterns=[xx
 ```
 第四bu使用
 {{MEDIA_URL}}{{xxx}}
+#### 分页库
+pure_pagination
+####城市过滤筛选
+ html中，stringformat:'i'把字符串转int类型
+ 
+ 城市，分类关联查询，  在a中?city={{ city.id }}&ct={{ category }}
+ html中循环的值，，forloop.counter 
+ ####我要提问
+ modelform的使用
+ 验证通过之后，可以直接save,commit=True就是保存到数据库
+ userask_form.save(commit=True)
+ #### 引申到 ajax使用
+ 返回json,数据
+ 
+ urls 分发处理
+ 1.在 自己urls.py中定义 app_name
+ 2.在总的url.py中，（include(),namespace='xx'）
 
 
 

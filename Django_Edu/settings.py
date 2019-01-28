@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'captcha',
+    'pure_pagination',
 
 ]
 AUTH_USER_MODEL='users.UserProfile'
@@ -146,3 +147,10 @@ EMAIL_USE_TTL = True
 EMAIL_HOST_USER='1372553910@qq.com'
 EMAIL_HOST_PASSWORD='blbmdamdojayfgec'
 EMAIL_FROM='1372553910@qq.com'
+#分页
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 5,
+    'MARGIN_PAGES_DISPLAYED': 2,
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

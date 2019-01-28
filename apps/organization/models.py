@@ -28,7 +28,8 @@ class CourseOrg(models.Model):
     address = models.CharField(max_length=50, verbose_name="地址")
     city = models.ForeignKey(CityDict, on_delete=models.CASCADE, verbose_name="所在城市")
     create_time = models.DateTimeField(default=datetime.now)
-
+    students = models.IntegerField(default=0, verbose_name="学习数")
+    courses = models.IntegerField(default=0, verbose_name="课程数")
     class Meta:
         verbose_name = "课程机构"
         verbose_name_plural = verbose_name
