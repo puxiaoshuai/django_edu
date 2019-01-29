@@ -167,22 +167,25 @@
     <script type="text/javascript">
      $(document).ready(function () {
             $('#jsStayBtn').click(function () {
-                alert("进入")
                 $.ajax({
                   cache:false,
                   type:'POST',
+                  dataType:'text/json',
                   url:"{% url 'organization:add_userask' %}",
                   data:$('#tostudy_form').serialize(),
-                  async:true,
-                  success:function (data) {
-                      console.log("进入了success")
-                      alert("提交成功")
-                          $('#tostudy_form')[0].reset();
-                  },
+                  async:false,
                   error:function (data) {
-                       console.log("进入失败")
-                       console.log(data)
-                          $('#jsCompanyTips').html(data.responseText['message'])
+                      console.log(data)
+                         if (data.responseText == 'success')
+                         {
+                             console.log("成功")
+                         }else  if (data.responseText =='fail')
+                         {
+                              console.log("失败")
+                               $('#jsCompanyTips').html(data.responseText['message'])
+                         }
+
+
                   }
               })
           })

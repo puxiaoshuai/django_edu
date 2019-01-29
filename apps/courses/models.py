@@ -1,11 +1,13 @@
 # encoding:utf-8
 from django.db import models
 from datetime import datetime
+from organization.models import CourseOrg
 
 
 # Create your models here.
 # 课程基本信息
 class Course(models.Model):
+    course_Org = models.ForeignKey(CourseOrg, verbose_name="所属机构", on_delete=models.DO_NOTHING,null=True)
     name = models.CharField(max_length=100, verbose_name='课程名称')
     desc = models.CharField(max_length=300, verbose_name="课程描述")
     detail = models.TextField(verbose_name="课程详情")
@@ -24,7 +26,7 @@ class Course(models.Model):
 
 ####章节,跟课程是 1对多
 class Chapter(models.Model):
-    course = models.ForeignKey(Course, verbose_name="章节",on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, verbose_name="章节", on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name="章节名称")
     create_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
@@ -34,7 +36,7 @@ class Chapter(models.Model):
 
 
 class Vedio(models.Model):
-    chapter = models.ForeignKey(Chapter, verbose_name="章节",on_delete=models.CASCADE)
+    chapter = models.ForeignKey(Chapter, verbose_name="章节", on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name="视频名称")
     create_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
@@ -44,7 +46,7 @@ class Vedio(models.Model):
 
 
 class CourseSource(models.Model):
-    course = models.ForeignKey(Course, verbose_name="课程",on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, verbose_name="课程", on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name="资源名称")
     download = models.FileField(upload_to='course/resource/%Y/%m', verbose_name="下载链接", max_length=100)
     create_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")

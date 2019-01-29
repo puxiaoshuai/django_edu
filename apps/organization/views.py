@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
 from .models import CourseOrg, CityDict
+import json
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from operation.forms import UserAskForm
 
@@ -55,6 +56,6 @@ class AddUserAsk_View(View):
         userask_form = UserAskForm(request.POST)
         if userask_form.is_valid():
             userask_form.save(commit=True)
-            return HttpResponse("{'status':'success','message':'成功'}", content_type='application/json')
+            return HttpResponse(json.loads('{"status": "success", "message": "sucess"}'))
         else:
-            return HttpResponse("{'status':'fail','message:'添加出错'}",content_type='application/json')
+            return HttpResponse(json.loads('{"status": "fail", "message": "error"}'))

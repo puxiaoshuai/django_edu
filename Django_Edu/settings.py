@@ -12,9 +12,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import sys
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -26,7 +27,6 @@ SECRET_KEY = '!!)&mqo9srj5n^+nu-k01wl*#b9kulkf$+%x95m3b5ktnm&u=1'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -45,13 +45,15 @@ INSTALLED_APPS = [
     'crispy_forms',
     'captcha',
     'pure_pagination',
+    'corsheaders',
 
 ]
-AUTH_USER_MODEL='users.UserProfile'
-AUTHENTICATION_BACKENDS= ('users.views.CustomBackend',)
+AUTH_USER_MODEL = 'users.UserProfile'
+AUTHENTICATION_BACKENDS = ('users.views.CustomBackend',)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -75,14 +77,12 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media'
 
-
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'Django_Edu.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -91,11 +91,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'edu_online',
-        'USER':'root',
-        'PASSWORD':'puhao'
+        'USER': 'root',
+        'PASSWORD': 'puhao'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -115,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -129,28 +127,34 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
-MEDIA_URL='/media/' #读取
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')#存放
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+MEDIA_URL = '/media/'  # 读取
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 存放
 
-
-#发送邮件
-EMAIL_HOST='smtp.qq.com'  #smtp
-EMAIL_PORT=25
-#加密连接类型:
+# 发送邮件
+EMAIL_HOST = 'smtp.qq.com'  # smtp
+EMAIL_PORT = 25
+# 加密连接类型:
 EMAIL_USE_TTL = True
-EMAIL_HOST_USER='1372553910@qq.com'
-EMAIL_HOST_PASSWORD='blbmdamdojayfgec'
-EMAIL_FROM='1372553910@qq.com'
-#分页
+EMAIL_HOST_USER = '1372553910@qq.com'
+EMAIL_HOST_PASSWORD = 'blbmdamdojayfgec'
+EMAIL_FROM = '1372553910@qq.com'
+# 分页
 
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 5,
     'MARGIN_PAGES_DISPLAYED': 2,
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,
 }
+CORS_ALLOW_HEADERS = (
+    'x-requested-with',
+    'content-type',
+    'accept',
+    'origin',
+    'authorization',
+    'x-csrftoken'
+)
